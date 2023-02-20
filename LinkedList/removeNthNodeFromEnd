@@ -1,0 +1,28 @@
+// here we have used a dummy node to handle edge cases
+
+class Solution {
+    public int length(ListNode head){
+        ListNode temp=head;
+        int c=0;
+        while(temp!=null){
+            c++;
+            temp=temp.next;
+        }
+        return c;
+    }
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy= new ListNode(-1);
+        dummy.next=head;
+        int i=length(dummy)-n-1;
+        ListNode temp= dummy;
+        int s=0;
+        while(s<i){
+            temp=temp.next;
+            s++;
+        }
+        if(temp.next!=null){
+        temp.next=temp.next.next;
+        }
+        return dummy.next;
+    }
+}
