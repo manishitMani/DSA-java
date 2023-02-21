@@ -1,0 +1,15 @@
+class Solution {
+    public void deleteNode(ListNode node) {
+    
+        ListNode temp=node;
+        temp.val= temp.next.val;
+        temp.next=temp.next.next;
+
+
+        
+    }
+}
+
+
+
+// here we have actually interchanged the value and moved the pointr to the given node to its next-> next
