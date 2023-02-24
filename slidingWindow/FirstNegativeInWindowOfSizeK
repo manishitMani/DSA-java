@@ -1,0 +1,42 @@
+package slidingWindow;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class FirstNegativeValueInWindowOfK {
+    public static void display(int[] arr, int k) {
+    	int i=0,j=0;
+    	Queue<Integer> que= new LinkedList<>();
+    	while(j<arr.length) {
+    		if(j-i+1<k) {
+    			if(arr[j]<0) {
+    				que.add(arr[j]);
+    				j++;
+    			}
+    			j++;
+    		}
+    		else if(j-i+1==k) {
+    			if(arr[j]<0) {
+    				que.add(arr[j]);
+    			}
+    			int val= que.peek();
+    			System.out.println(val);
+    			if(arr[i]==val) {
+    				que.remove();
+    			}
+    			if(j==arr.length-1) {
+    				break;
+    			}
+    			i++;
+    			j++;
+    		}
+    	}
+    }
+	public static void main(String[] args) {
+		int[] arr= {12,-1,-7,8,-15,30,16,28};
+		int k=3;
+		display(arr,k);
+
+	}
+
+}
