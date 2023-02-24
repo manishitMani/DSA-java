@@ -1,0 +1,38 @@
+package slidingWindow;
+
+public class SlidingWindowMax {
+	
+	public static int window(int[] arr, int k) {
+		int i=0,j=0;
+		int sum=0;
+		int maxSum= Integer.MIN_VALUE;
+		while(j<arr.length) {
+			if(j-i+1<k) {
+				sum= sum+ arr[j];
+				j++;
+			}
+			else if(j-i+1==k) {
+				sum= sum+ arr[j];
+				maxSum= Math.max(sum, maxSum);
+				if(j==arr.length) {
+					break;
+				}
+				j++;
+				sum= sum- arr[i];
+				i++;
+				
+			}
+		}
+		return maxSum;
+	}
+
+	public static void main(String[] args) {
+		int[] arr= {2,3,-6,-8,0,3,9};
+		int win=5;
+		int ans= window(arr,win);
+		System.out.println(ans);
+		
+
+	}
+
+}
