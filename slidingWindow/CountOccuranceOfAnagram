@@ -1,3 +1,80 @@
 we are given two strings one big and other small..we have to count all the anagrams of smaller string in bigger string
 anagrams are all possible combinations of that string(zumbled)
+ex- string 1--> aabaabaa
+    string 2--> aaba
+    
+    
+    package slidingWindow;
+
+import java.util.HashMap;
+
+public class CountOccurancesOfAnagrams {
+
+	public static void main(String[] args) {
+		String str= "ababaa";
+		String pattern= "aab";
+		int k= pattern.length();
+		int ans=0;
+		HashMap<Character,Integer> map= new HashMap<>();
+
+		// Mapping of the pattern string
+
+		// its creates a map
+		// a-> 3
+		// b-> 1
+
+		for(int i=0; i<pattern.length(); i++) {
+			if(map.containsKey(pattern.charAt(i))){
+				int val= map.get(pattern.charAt(i));
+				val++;
+				map.put(pattern.charAt(i), val);
+			}
+			else {
+				map.put(pattern.charAt(i), 1);
+			}
+		}
+
+		//map count
+		int count= map.size();
+
+		int i=0,j=0;
+
+		while(j<str.length()) {
+			if(map.containsKey(str.charAt(j))) {
+				int val= map.get(str.charAt(j));
+				val= val-1;
+				map.put(str.charAt(j), val);
+
+				if(val==0) {
+					count--;
+				}
+			}
+			if(j-i+1<k) {
+				
+				j++;
+			}
+			else if(j-i+1==k) {
+				if(count==0) {
+					ans++;
+				}
+
+				if(map.containsKey(str.charAt(i))) {
+					int val= map.get(str.charAt(i));
+					val++;
+					map.put(str.charAt(i), val);
+					if(val==1) {
+						count++;
+					}
+				}
+				i++;
+				j++;
+			}
+		}
+
+
+     System.out.println(ans);
+	}
+
+}
+
 
