@@ -1,0 +1,46 @@
+// in binary search
+// ceil is the number present in array which is just greater than the search
+// floor is the number present in array which is just smaller than the search
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner sc= new Scanner(System.in);
+    int n= sc.nextInt();
+    int[] arr= new int[n];
+    for(int i=0; i<arr.length; i++){
+        arr[i]=sc.nextInt();
+    }
+    
+    int d= sc.nextInt();
+    
+    int floor= Integer.MIN_VALUE;
+    int ceil= Integer.MAX_VALUE;
+    
+    int s= 0;
+    int e= arr.length-1;
+    while(s<=e){
+        int m=s+(e-s)/2;
+        if(arr[m]==d){
+            ceil=arr[m];
+            floor=arr[m];
+        }
+        else if(d>arr[m]){
+            floor=arr[m];
+            s=m+1;
+        }
+        else if(d<arr[m]){
+            ceil=arr[m];
+            e=m-1;
+        }
+    }
+    
+    System.out.println(ceil);
+    System.out.println(floor);
+ }
+
+}
