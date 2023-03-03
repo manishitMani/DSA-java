@@ -1,0 +1,22 @@
+  while(j< size of array/string){
+    we do some calculations
+    
+    if(condition<k){
+        j++
+     }
+     
+     if(condition equals k){
+       we get some potential ans from calculation
+       j++
+      }
+      
+      if(condition>k){
+         while(condition>k){
+            remove calculations for i
+            i++
+            if(condition equals k){
+            again get some potential ans
+           }
+           j++
+           }
+         }
