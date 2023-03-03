@@ -1,1 +1,12 @@
 we take two pointers i=0,j=0 
+while(j< size of array/string){
+  do some calculations
+  if(windowSize<K){
+    j++
+    }
+  else if(windowSize equals k){
+    find your answer from the previous done calculation
+    remove the ith index calculation
+    slide the window
+    }
+   }
