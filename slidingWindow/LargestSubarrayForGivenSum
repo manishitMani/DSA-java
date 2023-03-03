@@ -1,0 +1,47 @@
+// Variable size window identification
+
+arr and its size is given
+4 1 1 1 2 3 5 / size 7
+k=5
+find longest subarray of sum k
+4 1 / size=2
+1 1 1 2 / size=4
+2 3 / size=2
+5 / size=1
+
+public static void main(String[] args) {
+		
+		int[] arr= {4,1,1,1,2,3,5};
+		int k=5;
+		long sum=0;
+		int i=0,j=0;
+		int maxSize= Integer.MIN_VALUE;
+		while(j<arr.length) {
+			sum= sum+ arr[j];
+			if(sum<k) {
+				j++;
+			}
+			else if(sum==k) {
+				maxSize= Math.max(maxSize, j-i+1);
+				j++;
+			}
+			else if(sum>k) {
+				while(sum>k) {
+					sum= sum- arr[i];
+					i++;
+					
+					if(sum==k) {
+						maxSize= Math.max(maxSize, j-i+1);
+					}
+				}
+				j++;
+			}
+			
+			
+			
+		}
+		System.out.println(maxSize);
+		
+    
+	}
+   
