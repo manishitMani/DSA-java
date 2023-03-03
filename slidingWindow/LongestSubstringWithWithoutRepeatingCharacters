@@ -1,0 +1,48 @@
+public class LongestSubstringWithNoRepeatingCharacters {
+
+	public static void main(String[] args) {
+		//  Variable size window
+		String str= "pwwkew";
+		// we have to find substring of this string which is the longest and have all unique characters
+		// if window size=3 then we need 3 unique characters....if the windowSize is 8 then it should contains 8 unique characters
+		int maxSize= Integer.MIN_VALUE;
+		int i=0,j=0;
+		HashMap<Character,Integer> map= new HashMap<>();
+		while(j<str.length()) {
+			// calculations
+			if(map.containsKey(str.charAt(j))) {
+				int val= map.get(str.charAt(j));
+				map.put(str.charAt(j), val+1);
+			}
+			else {
+				map.put(str.charAt(j), 1);
+			}
+			
+			if(map.size()==j-i+1) {
+				maxSize= Math.max(maxSize, j-i+1);
+				j++;
+			}
+			else if(map.size()< j-i+1) {
+				while(map.size()<j-i+1) {
+					int val= map.get(str.charAt(i));
+					val--;
+					if(val==0) {
+						map.remove(str.charAt(i));
+						i++;
+					}
+					
+					
+					
+				}
+				j++;
+			}
+			
+		}
+		
+		
+		System.out.println(maxSize);
+		
+
+	}
+
+}
