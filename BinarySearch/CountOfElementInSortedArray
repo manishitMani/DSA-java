@@ -1,1 +1,53 @@
 
+public class CountOfElementInSortedArray {
+	
+	public static int firstOcc(int[] arr, int key) {
+		int s=0,e=arr.length-1;
+		int ans=-1;
+		while(s<=e) {
+			int m= s + (e-s)/2;
+			if(key== arr[m]) {
+				ans=m;
+				e= m-1;
+				
+			}
+			else if(key> arr[m]) {
+				s= m+1;
+			}
+			else if(key < arr[m]) {
+				e= m-1;
+			}
+		}
+		return ans;
+	}
+	
+	public static int lastOcc(int[] arr, int key) {
+		int s=0,e=arr.length-1;
+		int ans= -1;
+		while(s<=e) {
+			int m= s + (e-s)/2;
+			if(key== arr[m]) {
+				ans=m;
+				s= m+1;
+				
+			}
+			else if(key> arr[m]) {
+				s= m+1;
+			}
+			else if(key < arr[m]) {
+				e= m-1;
+			}
+		}
+		return ans;
+	}
+
+	public static void main(String[] args) {
+		int[] arr= {2,4,5,10,10,10,10,18,20};
+		int key= 10;
+		System.out.println(lastOcc(arr, key)-firstOcc(arr, key)+1);
+				
+		
+
+	}
+
+}
