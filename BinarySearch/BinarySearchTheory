@@ -1,0 +1,29 @@
+we are given a sorted array and have to perform operation on the sorted array
+we take two pointer indices
+int start=0;
+int end= sizeofArray-1
+while(start<=end){
+we calculate the mid index
+ int mid= start + (end-start)/2
+ if(key= arr[mid]){
+   return the index as the key element is found
+   }
+   
+ else if(key > arr[mid]){
+    start= mid+1
+    }
+ else if(key< arr[mid]){
+  end= mid -1
+ }
+ 
+ if all this is done 
+ }
+ 
+ this means that the key is not present in the array
+ retrun -1
+ 
+ }
+ 
+ every time we are reducing our array size by half that is size/2
+ so space is reduced by half
+ time complexity-> log(n)
