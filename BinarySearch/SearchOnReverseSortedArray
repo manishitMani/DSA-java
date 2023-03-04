@@ -1,0 +1,31 @@
+public class SearchInReverseSortedArray {
+	
+	public static int search(int[] arr, int key) {
+		int s=0,e=arr.length-1;
+		while(s<=e) {
+			int m= s+(e-s)/2;
+			if(key== arr[m]) {
+				return m;
+			}
+			else if(key>arr[m]) {
+				e= m-1;
+				
+			}
+			else if(key<arr[m]) {
+				s=m+1;
+			}
+			
+		}
+		return -1;
+		
+	}
+
+	public static void main(String[] args) {
+		int[] arr= {20,17,15,14,13,12,10,9,8,4};
+		int key=15;
+		System.out.println(search(arr,key));
+		
+
+	}
+
+}
