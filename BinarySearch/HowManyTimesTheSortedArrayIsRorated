@@ -1,0 +1,5 @@
+  we are give a rotated sorted array arr= [2,5,6,8,11,12,15,18] --> [11,12,15,18,2,5,6,8]--> it is rotated four times
+  
+  no of times the array is rotated is equal to the index of minimum element
+  the minimum element is smaller from its both the neighbour i.e left and right.
+  
