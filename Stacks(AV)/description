@@ -1,0 +1,6 @@
+can be array
+brute force seems to take quadratic complexity and the second loop is dependent on first
+ex-  for(int i=0; i<n; i++)
+        for(int j=0; j<i; j++)
+   here j is dependent on i
+   
