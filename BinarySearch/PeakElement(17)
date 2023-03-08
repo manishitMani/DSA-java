@@ -1,0 +1,4 @@
+give array--> [5,10,20,15]
+we have to return the index of the peak element
+
+peak element is that element which us greater than both of its left and right neighbour
