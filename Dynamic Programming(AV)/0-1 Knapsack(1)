@@ -1,0 +1,18 @@
+1. subset sum
+2. equal sum partition
+3. count of subset sum
+4. minimum subset sum diff
+5. target sum
+6. no of subset with given diff
+
+TYPES OF KNAPSACK
+1. Fractional Knapsack--> greedy(no dp)
+2. 0-1 Knapsack
+3. Unbounded Knapsack
+
+
+identification-> we have choice/optimal solution
+itm[] ->
+price[] ->
+W-> capacity of the knapsack 
+given , maximize the knapsack capacity
