@@ -1,0 +1,15 @@
+IDENTIFICATION...
+
+there is some choice given then recursion is used and if the recursive function have more than one calls then dp can be used.
+Recursive function -> Memoization -> top down
+
+1. 0-1 Knapsack
+2. Unbounded Knapsack
+3. Fibonacci
+4. Longest Common Subsequence(LCS)
+5. LIS
+6. Kadanes Algo
+7. Matrix Chain Multiplication
+8. DP on trees
+9. DP on grids
+10. Others
