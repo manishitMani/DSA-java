@@ -1,1 +1,70 @@
+arr= [10,20,30,40], and k=2(which is number of students)
+ex ways--> 10/90, 30/70, 60/40
+maximu of all (90,70,60)--->  minimum of max pages--> 60
+each student should get atleast one book
+book should be given in continous manner
 
+
+public class MinimumNumberOfPages {
+	
+	public static int max(int[] arr) {
+		int m= Integer.MIN_VALUE;
+		for(int i=0; i<arr.length; i++) {
+			if(arr[i]> m) {
+				m= arr[i];
+			}
+		}
+		return m;
+	}
+	
+	public static int sum(int[] arr) {
+		int s=0;
+		for(int i=0; i<arr.length; i++) {
+			s+=arr[i];
+		}
+		return s;
+	}
+	
+	public static boolean isValid(int[] arr, int k, int max) {
+		int student=1;
+		int sum=0;
+		for(int i=0; i<arr.length; i++) {
+			sum= sum+arr[i];
+			if(sum> max) {
+				student++;
+				sum= sum- arr[i];
+			}
+		}
+		
+		if(student>k) {
+			return false;
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		int[] arr= {10,20,30,40};
+		int s= max(arr);
+		int e= sum(arr);
+		int k=2;
+		int res= -1;
+		if(arr.length< k) {
+			System.out.println("-1");
+		}
+		while( s<= e) {
+			int m= s+(e-s)/2;
+			if(isValid(arr,k,m)== true) {
+				res= m;
+				e= m-1;
+				
+			}
+			else {
+				s= m+1; 
+			}
+		}
+		
+		System.out.println(res); 
+
+	}
+
+}
