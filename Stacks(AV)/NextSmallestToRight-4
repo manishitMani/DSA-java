@@ -1,0 +1,46 @@
+public class NSR {
+	public static ArrayList<Integer> reverse(ArrayList<Integer> list){
+		ArrayList<Integer> rev= new ArrayList<Integer>();
+		for(int i= list.size()-1; i>=0; i--) {
+			rev.add(list.get(i)); 
+		}
+		return rev;
+	}
+	
+	public static ArrayList<Integer> nsr(int[] arr){
+		ArrayList<Integer> list= new ArrayList<>();
+		Stack<Integer> st= new Stack<>();
+		
+		for(int i=arr.length-1; i>=0; i--) {
+			if(st.size()==0) {
+				list.add(-1);
+				st.push(arr[i]);
+			}
+			else if(st.size()>0 && st.peek()< arr[i]) {
+				list.add(st.peek());
+				st.push(arr[i]);
+			}
+			else if(st.size()>0 && st.peek()> arr[i]) {
+				while(st.size()>0 && st.peek()> arr[i]) {
+					st.pop();
+				}
+				if(st.size()==0) {
+					list.add(-1);
+				}
+				else {
+					list.add(st.peek());
+				}
+				st.push(arr[i]);
+			}
+			
+		}
+		ArrayList<Integer> ans= reverse(list);
+		return ans;
+		
+	}
+  public static void main(String[] args) {
+	       int[] arr= {4,5,2,10,8};
+	       System.out.println(nsr(arr));
+	       
+    }
+}
