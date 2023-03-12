@@ -1,0 +1,98 @@
+class Solution {
+
+
+    class Pair<V,I>{
+        V value;
+        I index;
+
+        public Pair(V value, I index){
+            this.value= value;
+            this.index= index;
+        }
+    }
+    
+    public Solution(){
+       
+    }
+    public ArrayList<Integer> nsl(int[] arr){
+        ArrayList<Integer> list= new ArrayList<>();
+       
+        Stack<Pair<Integer,Integer>> st= new Stack<>();
+        for(int i=0; i<arr.length; i++){
+            if(st.size()==0){
+                list.add(-1);
+            }
+            else if(st.size()>0 && st.peek().value< arr[i]){
+                list.add(st.peek().index);
+            }
+            else if(st.size()>0 && st.peek().value>= arr[i]){
+                while(st.size()>0 && st.peek().value>= arr[i]){
+                    st.pop();
+                }
+                if(st.size()==0){
+                    list.add(-1);
+                }
+                else{
+                    list.add(st.peek().index);
+                }
+            }
+            st.push(new Pair(arr[i],i));
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> nsr(int[] arr){
+        ArrayList<Integer> list= new ArrayList<>();
+        Stack<Pair<Integer,Integer>> st= new Stack<>();
+        int right= arr.length;
+        for(int i= arr.length-1; i>=0; i--){
+            if(st.size()==0){
+                list.add(right);
+            }
+            else if(st.size()>0 && st.peek().value< arr[i]){
+                list.add(st.peek().index);
+            }
+            else if(st.size()>0 && st.peek().value>= arr[i]){
+                while(st.size()>0 && st.peek().value>= arr[i]){
+                    st.pop();
+                }
+                if(st.size()==0){
+                    list.add(right);
+                }
+                else{
+                    list.add(st.peek().index);
+                }
+            }
+            st.push(new Pair(arr[i],i));
+        }
+        ArrayList<Integer> rev= new ArrayList<>();
+        for(int i=list.size()-1; i>=0; i--){
+            rev.add(list.get(i));
+        }
+        return rev;
+    }
+    public int largestRectangleArea(int[] heights) {
+        ArrayList<Integer> l= nsl(heights);
+        ArrayList<Integer> r= nsr(heights);
+        ArrayList<Integer> width= new ArrayList<>();
+        for(int i=0; i<l.size(); i++){
+            width.add(r.get(i)-l.get(i)-1);
+        }
+
+        ArrayList<Integer> area= new ArrayList<>();
+        for(int i=0; i<heights.length; i++){
+            area.add(heights[i]*width.get(i));
+        }
+
+        int max= Integer.MIN_VALUE;
+        int[] ans= new int[area.size()];
+        for(int i=0; i<area.size(); i++){
+            ans[i]= area.get(i);
+        }
+
+        for(int i=0; i<ans.length; i++){
+            max= Math.max(max,ans[i]);
+        }
+        return max;
+    }
+}
