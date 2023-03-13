@@ -24,6 +24,7 @@ class Solution {
 
 
 binary search sol---> maximixing the window size to k
+first find the closest element to x
 
 class Solution {
 
