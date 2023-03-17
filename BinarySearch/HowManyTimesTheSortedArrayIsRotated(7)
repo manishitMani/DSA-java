@@ -25,6 +25,7 @@
             if(nums[mid]<= nums[prev] && nums[mid] <= nums[next]){
                 return nums[mid];
             }
+            // the ans will exits in the unsorted region
             else if(nums[mid] >= nums[l]){
                 l = mid+1;
             }
