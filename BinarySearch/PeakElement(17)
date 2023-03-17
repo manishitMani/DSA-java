@@ -21,11 +21,11 @@ public class PeakElement {
 				}
 			}
 			if(m==0) {
-				if(arr[m+1]>arr[m]) {
-					return arr[m+1];
+				if(arr[m]>arr[m+1]) {
+					return arr[m];
 				}
 				else {
-					return arr[m];
+					return arr[m+1];
 				}
 			}
 			
