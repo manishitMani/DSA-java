@@ -1,0 +1,36 @@
+ public class AllBalancedParanthesis {
+	
+	public static ArrayList<String> strings(int open, int close, String output, ArrayList<String> list){
+	    if(open==0 && close==0) {
+	    	list.add(output);
+	    	return list;
+	    }
+	    
+	    
+	   
+	    if(open!=0) {
+	    	String output1= output;
+	    	output1= output1+"(";
+	    	strings(open-1,close,output1,list);
+	    }
+	    
+	    if(open< close) {
+	    	String output2= output;
+	    	output2= output2+")";
+	    	strings(open,close-1,output2,list);
+	    }
+		
+		return list;
+	}
+
+	public static void main(String[] args) {
+		ArrayList<String> list= new ArrayList<>();
+		int n=3;
+		int open=n;
+		int close=n;
+		String output="";
+		ArrayList<String> ans=strings(open,close,output,list);
+		System.out.println(ans);
+	}
+
+}
