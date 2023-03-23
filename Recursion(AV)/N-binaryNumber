@@ -1,0 +1,33 @@
+  Given a positive integer N, the task is to find all the N bit binary numbers having more than or equal 1’s than 0’s for any prefix of the number.
+  
+  
+  
+  class Solution {
+    ArrayList<String> solve(int one, int zero, int n, String o, ArrayList<String> list){
+        if(n==0){
+            list.add(o);
+            return list;
+        }
+        
+        String o1= o;
+        o1= o1+"1";
+        solve(one+1,zero,n-1,o1,list);
+        
+        if(one>zero){
+            String o2=o;
+            o2=o2+"0";
+            solve(one,zero+1,n-1,o2,list);
+            
+        }
+        return list;
+        
+    }
+    ArrayList<String> NBitBinary(int N) {
+        ArrayList<String> list= new ArrayList<>();
+        int one=0;
+        int zero=0;
+        String output="";
+        ArrayList<String> res= solve(one,zero,N,output,list);
+        return res;
+    }
+}
