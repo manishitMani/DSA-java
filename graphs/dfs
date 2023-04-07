@@ -1,0 +1,36 @@
+Input: V = 5 , adj = [[2,3,1] , [0], [0,4], [0], [2]]
+
+Output: 0 2 4 3 1
+Explanation: 
+0 is connected to 2, 3, 1.
+1 is connected to 0.
+2 is connected to 0 and 4.
+3 is connected to 0.
+4 is connected to 2.
+so starting from 0, it will go to 2 then 4,
+and then 3 and 1.
+Thus dfs will be 0 2 4 3 1.
+
+
+class Solution {
+    
+    public static void dfs(int node, boolean[] visited, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> ls){
+        visited[node]=true;
+        ls.add(node);
+        
+        for(int it: adj.get(node)){
+            if(visited[it]==false){
+                dfs(it,visited,adj,ls);
+            }
+        }
+    }
+    
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean visited[]= new boolean[V+1];
+        visited[0]=true;
+        ArrayList<Integer> ls= new ArrayList<>();
+        dfs(0,visited,adj,ls);
+        return ls;
+    }
+}
+
