@@ -1,0 +1,88 @@
+Given a grid of dimension nxm where each cell in the grid can have values 0, 1 or 2 which has the following meaning:
+0 : Empty cell
+1 : Cells have fresh oranges
+2 : Cells have rotten oranges
+
+We have to determine what is the minimum time required to rot all oranges. A rotten orange at index [i,j] can rot other fresh orange at indexes [i-1,j], [i+1,j], [i,j-1], [i,j+1] (up, down, left and right) in unit time. 
+ 
+
+Example 1:
+
+Input: grid = {{0,1,2},{0,1,2},{2,1,1}}
+Output: 1
+Explanation: The grid is-
+0 1 2
+0 1 2
+2 1 1
+Oranges at positions (0,2), (1,2), (2,0)
+will rot oranges at (0,1), (1,1), (2,2) and 
+(2,1) in unit time.
+
+
+
+class Pair{
+    int row;
+    int col;
+    int t;
+    Pair(int row, int col, int t){
+        this.row= row;
+        this.col= col;
+        this.t= t;
+    }
+}
+class Solution
+{
+    //Function to find minimum time required to rot all oranges. 
+    public int orangesRotting(int[][] grid)
+    {
+       int n= grid.length;
+       int m= grid[0].length;
+       
+       Queue<Pair> q= new LinkedList<>();
+       int[][] vis= new int[n][m];
+       
+       for(int i=0; i<n; i++){
+           for(int j=0; j<m; j++){
+               if(grid[i][j]==2){
+                   q.add(new Pair(i,j,0));
+                   vis[i][j]=2;
+               }
+               else{
+                   vis[i][j]=0;
+               }
+           }
+       }
+       
+       int time=0;
+       int[] drow={-1,0,1,0};
+       int[] dcol={0,1,0,-1};
+       while(!q.isEmpty()){
+           int r= q.peek().row;
+           int c= q.peek().col;
+           int t= q.peek().t;
+           time= Math.max(time,t);
+           q.remove();
+           
+           for(int i=0; i<4; i++){
+               int nrow= r+ drow[i];
+               int ncol= c+ dcol[i];
+               
+               if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && vis[nrow][ncol]!=2 && grid[nrow][ncol]==1){
+                   q.add(new Pair(nrow,ncol,t+1));
+                   vis[nrow][ncol]=2;
+               }
+           }
+       }
+       
+       for(int i=0; i<n; i++){
+           for(int j=0; j<m; j++){
+               if(vis[i][j]!=2 && grid[i][j]==1){
+                   return -1;
+               }
+           }
+       }
+       
+       return time;
+       
+    }
+}
