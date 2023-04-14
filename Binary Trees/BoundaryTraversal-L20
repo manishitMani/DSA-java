@@ -1,0 +1,67 @@
+import java.util.ArrayList;
+
+public class Solution {
+	public boolean isLeaf(TreeNode root){
+		if(root.left==null && root.right==null){
+			return true;
+		}
+		return false;
+	}
+
+	public void addLeft(TreeNode root, ArrayList<Integer> res){
+		TreeNode node= root.left;
+		while(node!=null){
+			if(isLeaf(node)==false){
+				res.add(node.data);
+			}
+			if(node.left!=null){
+				node=node.left;
+			}
+			else{
+				node=node.right;
+			}
+		}
+	}
+
+	public void addRight(TreeNode root, ArrayList<Integer> res){
+		ArrayList<Integer> list= new ArrayList<>();
+		TreeNode node= root.right;
+		while(node!=null){
+			if(isLeaf(node)==false){
+				list.add(node.data);
+			}
+			if(node.right!=null){
+				node= node.right;
+			}
+			else{
+				node=node.left;
+			}
+		}
+		for(int i: list){
+			res.add(list.get(i));
+		}
+	}
+
+	public void addLeaf(TreeNode root, ArrayList<Integer> res){
+		if(isLeaf(root)==true){
+			res.add(root.data);
+			return;
+		}
+		if(root.left!=null){
+			addLeaf(root.left,res);
+		}
+		if(root.right!=null){
+			addLeaf(root.right,res);
+		}
+	}
+	public static void ArrayList<Integer> traverseBoundary(TreeNode root){
+		ArrayList<Integer> ans= new ArrayList<>();
+		if(isLeaf(root)==false){
+			ans.add(root.data);
+			addLeft(root,ans);
+			addLeaf(root,ans);
+			addRight(root,left);
+			return ans;
+		}
+	}
+}
