@@ -37,6 +37,7 @@ public class Solution {
 				node=node.left;
 			}
 		}
+	Collections.reverse(list);
 		for(int i: list){
 			res.add(list.get(i));
 		}
