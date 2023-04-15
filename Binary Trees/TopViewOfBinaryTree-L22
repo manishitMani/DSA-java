@@ -1,0 +1,79 @@
+
+import java.util.*;
+
+// DEFINATION OF TREENODE CLASS
+
+class TreeNode{
+    
+    int value;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode(int value){
+        this.value=value;
+    }
+    
+}
+
+class Pair{
+    
+    int line;
+    TreeNode node;
+    Pair(int line, TreeNode node){
+        this.line= line;
+        this.node= node;
+    }
+    
+}
+
+
+
+ // TOPVIEW FUNCTION
+ 
+ public static ArrayList<Integer> topView(TreeNode root){
+     
+     
+     ArrayList<Integer> ans = new ArrayList<>();
+     
+     TreeMap<Integer,Integer> map = new TreeMap<>();
+     
+     Queue<Pair> q = new LinkedList<>();
+     
+     q.add(new Pair(0,root));
+     
+     if(root==null){
+         return ans;
+     }
+     
+     while(!q.isEmpty()){
+         
+         Pair temp = q.remove();
+         int line = temp.line;
+         TreeNode node = temp.node;
+         
+         if(!map.containsKey(line)){
+             map.put(line,node.value);
+         }
+         
+         if(node.left!=null){
+             q.add(new Pair(line-1,node.left));
+         }
+         
+         if(node.right!=null){
+             q.add(new Pair(line+1,node.right));
+         }
+         
+     }
+     
+     for(int nodeValue : map.values()){
+         ans.add(nodeValue);
+     }
+     
+     
+     return ans;
+     
+     
+ }
+ 
+ 
+}
