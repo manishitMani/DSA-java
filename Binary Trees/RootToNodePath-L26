@@ -1,1 +1,22 @@
+public class Solution {
+    public boolean solution(TreeNode A, ArrayList<Integer> list, int B){
+        if(A==null){
+            return false;
+        }
+        list.add(A.val);
+        if(A.val== B){
+            return true;
+        }
+        if(solution(A.left,list,B) || solution(A.right,list,B)){
+            return true;
+        }
+        list.remove(list.size()-1);
+        return false;
+    }
+    public ArrayList<Integer> solve(TreeNode A, int B) {
+       ArrayList<Integer> list= new ArrayList<>();
+       solution(A,list,B);
+       return list;
+    }
+}
 
