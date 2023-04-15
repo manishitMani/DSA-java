@@ -1,0 +1,14 @@
+class Solution {
+    public boolean isSymmetricHelp(TreeNode rootL, TreeNode rootR){
+        if(rootL==null || rootR==null){
+            return rootL==rootR;
+        }
+        if(rootL.val!=rootR.val){
+            return false;
+        }
+        return isSymmetricHelp(rootL.left,rootR.right) && isSymmetricHelp(rootL.right,rootR.left);
+    }
+    public boolean isSymmetric(TreeNode root) {
+        return root==null || isSymmetricHelp(root.left,root.right);
+    }
+}
