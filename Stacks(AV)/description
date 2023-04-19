@@ -3,4 +3,19 @@ brute force seems to take quadratic complexity and the second loop is dependent 
 ex-  for(int i=0; i<n; i++)
         for(int j=0; j<i; j++)
    here j is dependent on i
-   
+  --Questions--
+  1.NGL
+  2.NGR
+  3.NSL
+  4.NSR
+
+  5.Stock Span
+  6.Max Area Histogram
+  7.Max Area Rectangle in Binary Matrix
+
+  8.Rain Water Trapping
+  7.Min Stack Implementation
+  8.Stack using Heap
+  9.Celebrity Problem
+  10.Longest Valid Parenthesis
+  11.Iterative TOH
