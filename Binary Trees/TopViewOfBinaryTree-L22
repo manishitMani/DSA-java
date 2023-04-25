@@ -77,3 +77,49 @@ class Pair{
  
  
 }
+
+
+
+
+OR
+
+class pair{
+	int verticle;
+	BinaryTreeNode node;
+	pair(int verticle, BinaryTreeNode node){
+		this.verticle= verticle;
+		this.node=node;
+	}
+}
+public class Solution {
+	public static ArrayList<Integer> getTopView(BinaryTreeNode root) {
+		ArrayList<Integer> list= new ArrayList<>();
+		Map<Integer,Integer> map= new TreeMap<>();
+		if(root==null){
+			return list;
+		}
+		Queue<pair> q= new LinkedList<>();
+		q.add(new pair(0,root));
+		while(q.size()>0){
+			pair p= q.remove();
+			int v= p.verticle;
+			BinaryTreeNode node= p.node;
+			if(!map.containsKey(v)){
+				map.put(v,node.val);
+			}
+
+			if(node.left!=null){
+				q.add(new pair(v-1,node.left));
+			}
+			if(node.right!=null){
+				q.add(new pair(v+1,node.right));
+			}
+		}
+
+		for(Map.Entry<Integer,Integer> entry: map.entrySet()){
+			list.add(entry.getValue());
+		}
+
+		return list;
+	}
+}
