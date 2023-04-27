@@ -1,0 +1,49 @@
+Given a Binary Tree. Check whether all of its nodes have the value equal to the sum of their child nodes.
+
+class Tree
+{
+   
+    public static int isSumProperty(Node root)
+    {
+        
+        if(root==null){
+            return -1;
+        }
+        int child=0;
+        if(root.left!=null){
+            child= child+root.left.data;
+        }
+        if(root.right!=null){
+            child=child+root.right.data;
+        }
+        if(child> root.data){
+            root.data=child;
+        }
+        
+        else{
+            if(root.left!=null){
+                root.left.data= root.data;
+            }
+            if(root.right!=null){
+                root.right.data= root.data;
+            }
+        }
+        
+        isSumProperty(root.left);
+        isSumProperty(root.right);
+        
+        int total=0;
+        if(root.left!=null){
+            total= total+root.left.data;
+        }
+        if(root.right!=null){
+            total=total+root.right.data;
+        }
+        
+        if(root.left!=null || root.right!=null){
+            root.data= total;
+        }
+        
+        
+    }
+}
