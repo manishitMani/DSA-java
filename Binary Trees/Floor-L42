@@ -1,0 +1,23 @@
+   BST
+   
+   public class Solution {
+
+    public static int floorInBST(TreeNode<Integer> root, int X) {
+        int val=-1;
+        while(root!=null){
+            if(X==root.data){
+                val= root.data;
+                return val;
+            }
+
+            if(root.data>X){
+                root=root.left;
+            }
+            else{
+                val= root.data;
+                root=root.right;
+            }
+        }
+        return val;
+    }
+}
