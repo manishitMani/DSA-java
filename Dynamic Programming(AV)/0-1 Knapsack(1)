@@ -16,3 +16,36 @@ itm[] ->
 price[] ->
 W-> capacity of the knapsack 
 given , maximize the knapsack capacity
+
+
+gfg code
+
+class Solution 
+{ 
+    static int knap(int W, int[] wt, int[] val, int n, int[][] dp){
+        if(W==0 || n==0) return 0;
+        if(dp[W][n]!=-1){
+            return dp[W][n];
+        }
+        
+        if(wt[n-1]<=W){
+            return dp[W][n]=Math.max(val[n-1]+knap(W-wt[n-1],wt,val,n-1,dp),knap(W,wt,val,n-1,dp));
+        }
+        else{
+            return dp[W][n]= knap(W,wt,val,n-1,dp);
+        }
+    }
+    static int knapSack(int W, int wt[], int val[], int n) 
+    { 
+         int[][] dp= new int[W+1][n+1];
+         for(int i=0; i<dp.length; i++){
+             for(int j=0; j<dp[i].length; j++){
+                 dp[i][j]=-1;
+             }
+         }
+         return knap(W, wt, val, n, dp);
+    } 
+}
+
+
+
