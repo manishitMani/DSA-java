@@ -1,0 +1,42 @@
+gfg 
+
+
+class Solution{
+    
+    static boolean subset(int n, int[] arr, int sum, boolean[][] dp){
+        if(sum>0 && n==0){
+            return false;
+        }
+        if(sum==0){
+            return true;
+        }
+        
+        if(dp[n][sum]==true){
+            return dp[n][sum];
+        }
+        
+        if(arr[n-1]<=sum){
+            return dp[n][sum]=(subset(n-1,arr,sum-arr[n-1],dp) || subset(n-1,arr,sum,dp));
+        }
+        else {
+            return dp[n][sum]=subset(n-1,arr,sum,dp);
+        }
+    }
+
+
+    static Boolean isSubsetSum(int N, int arr[], int sum){
+        boolean[][] dp= new boolean[N+1][sum+1];
+        dp[0][0]=true;
+        for(int i=1; i<N+1; i++){
+            for(int j=1; j<sum+1; j++){
+                if(i==0){
+                    dp[i][j]= false;
+                }
+                if(j==0){
+                    dp[i][j]=true;
+                }
+            }
+        }
+        return subset(N,arr,sum,dp);
+    }
+}
