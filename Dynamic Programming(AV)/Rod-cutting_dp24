@@ -1,0 +1,58 @@
+CN-unbounded knapsack variation
+
+RECURSION+MEM
+public class Solution {
+	public static int solve(int index, int target, int[] wt, int[] val, int[][] dp){
+		if(index==0){
+			return target*val[0];
+		}
+		if(dp[index][target]!=-1) return dp[index][target];
+		int nt= 0+solve(index-1,target,wt,val,dp);
+		int t=0;
+		if(wt[index]<=target){
+			t=val[index]+solve(index,target-wt[index],wt,val,dp);
+		}
+		return dp[index][target]=Math.max(t,nt);
+	}
+	public static int cutRod(int price[], int n) {
+		int[] wt= new int[n];
+		for(int i=0; i<n; i++){
+			wt[i]=i+1;
+		}
+		int[][] dp= new int[n][n+1];
+		for(int i=0; i<n; i++){
+			for(int j=0; j<n+1; j++){
+				dp[i][j]=-1;
+			}
+		}
+		return solve(n-1,n,wt,price,dp);
+	}
+}
+
+TABULATION
+
+public class Solution {
+	public static int cutRod(int price[], int n) {
+		int[][] dp= new int[n][n+1];
+		int[] wt= new int[n];
+		for(int i=0; i<n; i++){
+			wt[i]=i+1;
+		}
+		// base case
+		for(int rod=0; rod<n+1; rod++){
+			dp[0][rod]=rod*price[0];
+		}
+		
+		for(int i=1; i<n; i++){
+			for(int j=0; j<n+1; j++){
+				int nt=0+dp[i-1][j];
+				int t=Integer.MIN_VALUE/2;
+				if(j>=wt[i]){
+					t=price[i]+dp[i][j-wt[i]];
+				}
+				dp[i][j]=Math.max(nt,t);
+			}
+		}
+		return dp[n-1][n];
+	}
+}
