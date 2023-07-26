@@ -1,0 +1,67 @@
+Leetcode 1312
+keep the longest palindrome intact and length(string)-length(lps) will be ans
+
+REC+MEM
+class Solution {
+    public int lcs(String s1, String s2, int index1, int index2, int[][] dp){
+        if(index1<0 || index2<0) return 0;
+        if(dp[index1][index2]!=-1) return dp[index1][index2];
+        if(s1.charAt(index1)==s2.charAt(index2)){
+            return dp[index1][index2]=1+ lcs(s1,s2,index1-1, index2-1,dp);
+        }
+        return dp[index1][index2]=Math.max(lcs(s1,s2,index1-1,index2,dp),lcs(s1,s2,index1,index2-1,dp));
+    }
+    public int minInsertions(String s) {
+        int n= s.length();
+        String rev= "";
+        for(int i=s.length()-1; i>=0; i--){
+            rev+=s.charAt(i);
+        }
+        int[][] dp= new int[n][n];
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                dp[i][j]=-1;
+            }
+        }
+        int nlcs= lcs(s,rev,n-1,n-1,dp);
+        return n-nlcs;
+    }
+}
+
+TABULATION
+
+class Solution {
+    public int minInsertions(String s) {
+        int n= s.length();
+        String rev= "";
+        for(int i=s.length()-1; i>=0; i--){
+            rev+=s.charAt(i);
+        }
+        int[][] dp= new int[n+1][n+1];
+        // base case
+
+        for(int i=0; i<n+1; i++){
+            dp[0][i]=0;
+        }
+        for(int i=0; i<n+1; i++){
+            dp[i][0]=0;
+        }
+
+        //
+        for(int i=1; i<n+1; i++){
+            for(int j=1; j<n+1; j++){
+                if(s.charAt(i-1)==rev.charAt(j-1)){
+                    dp[i][j]=1+ dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j]= Math.max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+
+        int nlps= dp[n][n];
+        return n-nlps;
+    }
+}
+
+SPACE OPTIMIZATION
