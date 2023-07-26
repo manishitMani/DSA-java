@@ -1,0 +1,64 @@
+Leetcode-516
+
+REC+MEM
+
+class Solution {
+    public int solve(String s1, String s2, int index1, int index2, int[][] dp){
+        if(index1<0 || index2<0) return 0;
+        if(dp[index1][index2]!=-1) return dp[index1][index2];
+        if(s1.charAt(index1)==s2.charAt(index2)){
+            return dp[index1][index2]=1+ solve(s1,s2,index1-1,index2-1,dp);
+        }
+        return dp[index1][index2]=Math.max(solve(s1,s2,index1-1,index2,dp),solve(s1,s2,index1,index2-1,dp));
+    }
+    public int longestPalindromeSubseq(String s) {
+        String s2="";
+       for(int i=s.length()-1; i>=0; i--){
+           s2+=s.charAt(i);
+       }
+       int n= s.length();
+       int[][] dp= new int[n][n];
+       for(int i=0; i<n; i++){
+           for(int j=0; j<n; j++){
+               dp[i][j]=-1;
+           }
+       }
+       
+       return solve(s,s2,n-1,n-1,dp);
+    }
+}
+
+
+TABULATION
+
+class Solution {
+    public int longestPalindromeSubseq(String s) {
+        String s2="";
+       for(int i=s.length()-1; i>=0; i--){
+           s2+=s.charAt(i);
+       }
+       int n= s.length();
+       int[][] dp= new int[n+1][n+1];
+       // base case
+       for(int i=0; i<n+1; i++){
+           dp[0][i]=0;
+       }
+       for(int i=0; i<n+1; i++){
+           dp[i][0]=0;
+       }
+      // 
+       for(int i=1; i<n+1; i++){
+           for(int j=1; j<n+1; j++){
+               if(s.charAt(i-1)==s2.charAt(j-1)){
+                   dp[i][j]=1+ dp[i-1][j-1];
+               }
+               else{
+                   dp[i][j]= Math.max(dp[i-1][j],dp[i][j-1]);
+               }
+           }
+       }
+       return dp[n][n];
+    }
+}
+
+// SPACE OPTIMIZATION
